@@ -5,10 +5,10 @@ from django.http import Http404
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from rest_app.serializers import PostSerializer, PostSerializerList
+from rest_app.serializers import PostSerializer, PostSerializerList, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
 
 
 def index(request):
@@ -20,6 +20,11 @@ def index(request):
     args['posts'] = Post.objects.all()
     args['username'] = auth.get_user(request).username
     return render_to_response("rest_app/index.html", args)
+
+
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class PostList(APIView):

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.CharField(max_length=700)
-    time = models.DateField(default=datetime.now, editable=False,)
+    time = models.DateField(default=datetime.now, editable=False, null=True, blank=True)
     # image = models.ImageField('Label', upload_to='/media/img')
 
     def __unicode__(self):
