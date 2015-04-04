@@ -32,5 +32,5 @@ Thumbs.db
 build/
 
 #pyc files
-.pyc
-.sqlite3
+*.pyc
+*.sqlite3
