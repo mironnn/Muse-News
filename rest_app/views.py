@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.core.context_processors import csrf
 from rest_app.models import Post
 from django.http import Http404
+from django.contrib import auth
+from django.contrib.auth.models import User
 
 from rest_app.serializers import PostSerializer, PostSerializerList
 from rest_framework.views import APIView
@@ -9,10 +12,14 @@ from rest_framework import status
 
 
 def index(request):
-    posts = Post.objects.all()
-    context = {'posts': posts}
-    template = "index.html"
-    return render(request, template, context)
+    args = {}
+    args.update(csrf(request))
+    # posts = Post.objects.all()
+    # context = {'posts': posts}
+    # template = "rest_app/index.html"
+    args['posts'] = Post.objects.all()
+    args['username'] = auth.get_user(request).username
+    return render_to_response("rest_app/index.html", args)
 
 
 class PostList(APIView):

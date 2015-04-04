@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^index', index),
     url(r'^posts/', views.PostList.as_view()),
     url(r'^post/(?P<pk>[0-9]+)/$', views.PostDetail.as_view()),
+    url(r'^auth/', include('login.urls')),
 )
