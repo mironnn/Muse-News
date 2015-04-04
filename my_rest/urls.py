@@ -14,6 +14,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index),
     url(r'^index', index),
-    url(r'^post/', views.PostList.as_view()),
-    url(r'^posts/(?P<pk>[0-9]+)/$', views.PostDetail.as_view()),
+    url(r'^posts/', views.PostList.as_view()),
+    url(r'^post/(?P<pk>[0-9]+)/$', views.PostDetail.as_view()),
 )
