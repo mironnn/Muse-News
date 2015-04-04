@@ -2,7 +2,6 @@ package ua.muse;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import java.util.Arrays;
  * Created by yatagan on 4/4/15.
  */
 public class NewsAdapter extends BaseAdapter {
-    private ArrayList<Data> datas = new ArrayList<Data>();
+    private ArrayList<News> newses = new ArrayList<News>();
     LayoutInflater inflater;
 
     NewsAdapter(Context context) {
@@ -31,12 +30,12 @@ public class NewsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return datas.size();
+        return newses.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return datas.get(position);
+        return newses.get(position);
     }
 
     @Override
@@ -52,17 +51,17 @@ public class NewsAdapter extends BaseAdapter {
 //            NewsView newsView = (NewsView) convertView.findViewById(R.id.newsView);
 //            newsView.setExampleString(datas.get(position).getTitle());
             TextView textView = (TextView) convertView.findViewById(R.id.textView);
-            textView.setText(datas.get(position).getTitle());
+            textView.setText(newses.get(position).getTitle());
         }
         //Here we can do changes to the convertView, such as set a text on a TextView
         //or an image on an ImageView.
         return convertView;
     }
 
-    public void setData(Data []newDatas) {
-        datas.clear();
-        if (newDatas != null)
-            datas.addAll(Arrays.asList(newDatas));
+    public void setData(News[] newNewses) {
+        newses.clear();
+        if (newNewses != null)
+            newses.addAll(Arrays.asList(newNewses));
     }
 
     public void update(SwipeRefreshLayout swipeContainer) {

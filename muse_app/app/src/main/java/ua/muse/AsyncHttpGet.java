@@ -11,7 +11,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 
 public class AsyncHttpGet extends AsyncTask<String, Void, String> {
@@ -55,10 +54,10 @@ public class AsyncHttpGet extends AsyncTask<String, Void, String> {
 
 
         Gson gson = new Gson();
-        Data[] datas = gson.fromJson(content, Data[].class);
+        News[] newses = gson.fromJson(content, News[].class);
         Log.d("muse-news", content);
 
-        adapter.setData(datas);
+        adapter.setData(newses);
         if (swipeContainer != null)
             swipeContainer.setRefreshing(false);
     }
