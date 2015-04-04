@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/ua.muse" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<ua.muse.NewsView android:background="#ccc" android:layout_width="300dp"-->
+        <!--android:layout_height="50dp" android:paddingLeft="20dp" android:padding="50dp"-->
+        <!--app:exampleDimension="12sp" app:exampleColor="#33b5e5" app:exampleString="Hello, NewsView"-->
+        <!--android:id="@+id/newsView" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView"
+        android:layout_gravity="left|top" />
+</FrameLayout>

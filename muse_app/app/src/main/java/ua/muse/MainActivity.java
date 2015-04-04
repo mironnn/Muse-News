@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 
@@ -13,13 +16,13 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d("MyApp", "I am here");
         super.onCreate(savedInstanceState);
 
-        AsyncHttpGet get = new AsyncHttpGet(this);
-        get.execute("http://192.168.20.205:8000/post/1/");
-
         setContentView(R.layout.activity_main);
+
+        NewsAdapter newsAdapter = new NewsAdapter(this);
+        ListView listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(newsAdapter);
     }
 
 
@@ -46,8 +49,29 @@ public class MainActivity extends ActionBarActivity {
     }
 
     void setText(String text) {
-        TextView textView = (TextView)findViewById(R.id.helloText);
-        textView.setText(text);
+//        TextView textView = (TextView)findViewById(R.id.helloText);
+//        textView.setText(text);
+
+        ListView listView = (ListView)findViewById(R.id.listView);
+
+        // Defined Array values to show in ListView
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+//        listView.setAdapter(adapter);
+
+//        NewsAdapter newsAdapter = new NewsAdapter();
+//        listView.setAdapter(newsAdapter);
+
     }
 
 }

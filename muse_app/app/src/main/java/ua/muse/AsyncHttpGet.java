@@ -10,15 +10,16 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 
 public class AsyncHttpGet extends AsyncTask<String, Void, String> {
 
     private Exception exception;
-    MainActivity mainActivity;
+    NewsAdapter adapter;
 
-    AsyncHttpGet(MainActivity act) {
-        mainActivity = act;
+    AsyncHttpGet(NewsAdapter adapter) {
+        this.adapter = adapter;
     }
 
     protected String doInBackground(String... urls) {
@@ -51,10 +52,9 @@ public class AsyncHttpGet extends AsyncTask<String, Void, String> {
 
 
         Gson gson = new Gson();
-        Data data = gson.fromJson(content, Data.class);
-        Log.d("muzad", content);
-        Log.d("muzad", data.toString());
+        Data[] datas = gson.fromJson(content, Data[].class);
+        Log.d("muse-news", content);
 
-        mainActivity.setText(data.toString());
+        adapter.setData(datas);
     }
 }
