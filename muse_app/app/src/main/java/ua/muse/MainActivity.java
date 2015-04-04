@@ -1,10 +1,13 @@
 package ua.muse;
 
+import android.app.Activity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -20,9 +23,24 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
 
-        NewsAdapter newsAdapter = new NewsAdapter(this);
+        final NewsAdapter newsAdapter = new NewsAdapter(this);
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(newsAdapter);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                Log.d("muse", "onRefresh");
+                newsAdapter.update(swipeContainer);
+
+            }
+        });
+
     }
 
 
@@ -73,5 +91,7 @@ public class MainActivity extends ActionBarActivity {
 //        listView.setAdapter(newsAdapter);
 
     }
+
+    private SwipeRefreshLayout swipeContainer;
 
 }

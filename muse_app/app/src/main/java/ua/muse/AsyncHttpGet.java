@@ -1,6 +1,7 @@
 package ua.muse;
 
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -17,9 +18,11 @@ public class AsyncHttpGet extends AsyncTask<String, Void, String> {
 
     private Exception exception;
     NewsAdapter adapter;
+    SwipeRefreshLayout swipeContainer;
 
-    AsyncHttpGet(NewsAdapter adapter) {
+    AsyncHttpGet(NewsAdapter adapter, SwipeRefreshLayout swipeContainer) {
         this.adapter = adapter;
+        this.swipeContainer = swipeContainer;
     }
 
     protected String doInBackground(String... urls) {
@@ -56,5 +59,7 @@ public class AsyncHttpGet extends AsyncTask<String, Void, String> {
         Log.d("muse-news", content);
 
         adapter.setData(datas);
+        if (swipeContainer != null)
+            swipeContainer.setRefreshing(false);
     }
 }

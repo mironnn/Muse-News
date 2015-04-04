@@ -1,6 +1,8 @@
 package ua.muse;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +24,8 @@ public class NewsAdapter extends BaseAdapter {
         inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
 
-        AsyncHttpGet get = new AsyncHttpGet(this);
-//        get.execute("http://192.168.20.205:8000/post/1/");
-        get.execute("http://192.168.20.205:8000/posts/");
+        update(null);
+
 
     }
 
@@ -59,6 +60,15 @@ public class NewsAdapter extends BaseAdapter {
     }
 
     public void setData(Data []newDatas) {
-        datas.addAll(Arrays.asList(newDatas));
+        datas.clear();
+        if (newDatas != null)
+            datas.addAll(Arrays.asList(newDatas));
+    }
+
+    public void update(SwipeRefreshLayout swipeContainer) {
+        AsyncHttpGet get = new AsyncHttpGet(this, swipeContainer);
+//        get.execute("http://192.168.20.205:8000/post/1/");
+//        get.execute("http://192.168.20.205:8000/posts/");
+        get.execute("http://192.168.20.183:8000/posts/");
     }
 }
