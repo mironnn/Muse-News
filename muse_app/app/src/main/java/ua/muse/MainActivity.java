@@ -1,16 +1,24 @@
-package ua.muza;
+package ua.muse;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d("MyApp", "I am here");
         super.onCreate(savedInstanceState);
+
+        AsyncHttpGet get = new AsyncHttpGet(this);
+        get.execute("http://192.168.20.205:8000/post/1/");
+
         setContentView(R.layout.activity_main);
     }
 
@@ -36,4 +44,10 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    void setText(String text) {
+        TextView textView = (TextView)findViewById(R.id.helloText);
+        textView.setText(text);
+    }
+
 }
